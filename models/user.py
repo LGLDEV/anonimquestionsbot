@@ -10,13 +10,11 @@ class User(Base):
 
     id = Column("id", Integer, primary_key=True)
     user_id = Column("user_id", Integer, nullable=False)
-    lang = Column("lang", String, default="lang")
 
 
     def __init__(self, user_id, lang) -> None:
         self.user_id = user_id
-        self.lang = lang
 
 
     def __repr__(self) -> str:
-        return f"{{user_id: {self.user_id}, lang: {self.lang}}}"
+        return f"{{user_id: {self.user_id}}}"
