@@ -2,7 +2,7 @@ from core import bot, dp
 from aiogram import executor
 from config import parser
 from handlers import start
-
+from utils import create_db
 
 
 async def on_startup(dp):
@@ -12,5 +12,6 @@ async def on_startup(dp):
 
 
 if __name__ =="__main__":
+    create_db()
     executor.start_polling(dp, on_startup=on_startup)
 
