@@ -5,7 +5,7 @@ from utils import Query
 from models import User
 from config import parser
 from fsm import Reply
-from markups import back_markup
+from markups import back_markup, rep_markup
 
 
 query = Query(User)
@@ -51,8 +51,9 @@ async def reply_id(msg: types.Message, state: FSMContext):
             return await state.finish()
         text = msg.text 
         data = await state.get_data()
-        await bot.send_message(data['reply_id'], text=text)
+        await bot.send_message(data['reply_id'], text=text, reply_markup=rep_markup(data['reply_id']))
         await state.finish()
         return await msg.answer(f"<b>Bu sizning shaxsiy havolangiz:\n\nhttps://t.me/{parser('BOT_NAME')}?start={msg.from_user.id}\n\nUlashish orqali anonim suhbat quring!</b>")
-    except:
+    except Exception as exe:
+        print(exe)
         return await msg.answer("<b>🚫 Xatolik yuz berdi</b>")
