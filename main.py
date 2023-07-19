@@ -1,7 +1,7 @@
 from core import bot, dp
 from aiogram import executor
 from config import parser
-from handlers import start
+from handlers import *
 from utils import create_db
 
 

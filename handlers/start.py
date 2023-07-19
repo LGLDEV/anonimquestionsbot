@@ -5,6 +5,8 @@ from utils import Query
 from models import User
 from config import parser
 from fsm import Reply
+from markups import back_markup
+
 
 query = Query(User)
 
@@ -21,11 +23,11 @@ async def cmd_start(msg: types.Message, state: FSMContext):
                 return await state.finish()
             if not user:
                 query.create_user(msg.from_user.id)
-                await msg.answer("<b>Xabaringizni yuboring: </b>")
+                await msg.answer("<b>Xabaringizni yuboring: </b>", reply_markup=back_markup)
                 await state.update_data({"message_args": msg.get_args()})
                 return await state.set_state(Reply.reply_id.state)
             else:
-                await msg.answer("<b>Xabaringizni yuboring: </b>")
+                await msg.answer("<b>Xabaringizni yuboring: </b>", reply_markup=back_markup)
                 await state.update_data({"reply_id": msg.get_args()})
                 return await state.set_state(Reply.reply_id.state)
         else:
@@ -39,10 +41,15 @@ async def cmd_start(msg: types.Message, state: FSMContext):
 
 
 
+
+
 @dp.message_handler(state=Reply.reply_id)
 async def reply_id(msg: types.Message, state: FSMContext):
     try:
-        text = msg.text
+        if msg.text == "❌ Bekor qilish":
+            await msg.answer(f"<b>Bu sizning shaxsiy havolangiz:\n\nhttps://t.me/{parser('BOT_NAME')}?start={msg.from_user.id}\n\nUlashish orqali anonim suhbat quring!</b>", reply_markup=types.ReplyKeyboardRemove())
+            return await state.finish()
+        text = msg.text 
         data = await state.get_data()
         await bot.send_message(data['reply_id'], text=text)
         await state.finish()
