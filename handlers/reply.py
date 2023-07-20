@@ -30,7 +30,7 @@ async def reply_id(msg: types.Message, state: FSMContext):
         data = await state.get_data()
         await bot.send_message(data["answer_id"], text=text, reply_markup=rep_markup(data['answer_id']))
         await state.finish()
-        return await msg.answer(f"<b>Bu sizning shaxsiy havolangiz:\n\nhttps://t.me/{parser('BOT_NAME')}?start={msg.from_user.id}\n\nUlashish orqali anonim suhbat quring!</b>")
+        return await msg.answer(f"<b>Bu sizning shaxsiy havolangiz:\n\nhttps://t.me/{parser('BOT_NAME')}?start={msg.from_user.id}\n\nUlashish orqali anonim suhbat quring!</b>", reply_markup=types.ReplyKeyboardRemove())
     except Exception as exe:
     	return await msg.answer("<b>🚫 Xatolik yuz berdi</b>")
 

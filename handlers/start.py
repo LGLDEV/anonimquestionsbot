@@ -19,7 +19,7 @@ async def cmd_start(msg: types.Message, state: FSMContext):
             idx = query.get_user(msg.get_args())
             if not idx:
                 await msg.answer("<b>⚠️ Bu foydalanuvchi mavjud emas</b>")
-                await msg.answer(f"<b>Bu sizning shaxsiy havolangiz:\n\nhttps://t.me/{parser('BOT_NAME')}?start={msg.from_user.id}\n\nUlashish orqali anonim suhbat quring!</b>")
+                await msg.answer(f"<b>Bu sizning shaxsiy havolangiz:\n\nhttps://t.me/{parser('BOT_NAME')}?start={msg.from_user.id}\n\nUlashish orqali anonim suhbat quring!</b>", reply_markup=types.ReplyKeyboardRemove())
                 return await state.finish()
             if not user:
                 query.create_user(msg.from_user.id)
@@ -33,8 +33,8 @@ async def cmd_start(msg: types.Message, state: FSMContext):
         else:
             if not user:
                 query.create_user(msg.from_user.id)
-                return await msg.answer(f"<b>Bu sizning shaxsiy havolangiz:\n\nhttps://t.me/{parser('BOT_NAME')}?start={msg.from_user.id}\n\nUlashish orqali anonim suhbat quring!</b>")
-            return await msg.answer(f"<b>Bu sizning shaxsiy havolangiz:\n\nhttps://t.me/{parser('BOT_NAME')}?start={msg.from_user.id}\n\nUlashish orqali anonim suhbat quring!</b>")
+                return await msg.answer(f"<b>Bu sizning shaxsiy havolangiz:\n\nhttps://t.me/{parser('BOT_NAME')}?start={msg.from_user.id}\n\nUlashish orqali anonim suhbat quring!</b>", reply_markup=types.ReplyKeyboardRemove())
+            return await msg.answer(f"<b>Bu sizning shaxsiy havolangiz:\n\nhttps://t.me/{parser('BOT_NAME')}?start={msg.from_user.id}\n\nUlashish orqali anonim suhbat quring!</b>", reply_markup=types.ReplyKeyboardRemove())
     except:
         return await msg.answer("<b>🚫 Xatolik yuz berdi</b>")
         

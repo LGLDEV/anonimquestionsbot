@@ -16,6 +16,8 @@ class Query:
         session.add(User(user_id=user_id, lang='lang'))
         session.commit()
 
+    def get_count(self):
+        return self.query.count()
 
     # admin querys
     def get_admin(self, admin_id):
@@ -26,3 +28,4 @@ class Query:
     def create_admin(self, admin_id, admin_role):
         session.add(Admin(admin_id=admin_id, admin_role=admin_role))
         session.commit()
+
