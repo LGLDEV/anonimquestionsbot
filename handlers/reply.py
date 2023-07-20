@@ -15,7 +15,8 @@ async def action_reply(call: types.CallbackQuery,state: FSMContext ):
 			await bot.send_message(call.from_user.id, "📤 Javobingizni yozing", reply_markup=back_markup)
 			return await state.set_state(Answer.answer_id.state)
 	except:
-		return await msg.answer("<b>🚫 Xatolik yuz berdi</b>")
+		await bot.send_message(call.from_user.id, "<b>🚫 Xatolik yuz berdi</b>", reply_markup=types.ReplyKeyboardRemove())
+		# return await msg.answer("<b>🚫 Xatolik yuz berdi</b>")
 
 
 
@@ -32,3 +33,8 @@ async def reply_id(msg: types.Message, state: FSMContext):
         return await msg.answer(f"<b>Bu sizning shaxsiy havolangiz:\n\nhttps://t.me/{parser('BOT_NAME')}?start={msg.from_user.id}\n\nUlashish orqali anonim suhbat quring!</b>")
     except Exception as exe:
     	return await msg.answer("<b>🚫 Xatolik yuz berdi</b>")
+
+
+
+
+
