@@ -16,6 +16,10 @@ class Query:
         session.add(User(user_id=user_id, lang='lang'))
         session.commit()
 
+    def get_users(self):
+        users = self.query.all()
+        return users
+
     def get_count(self):
         return self.query.count()
 
