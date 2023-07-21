@@ -34,3 +34,7 @@ class Query:
         session.add(Admin(admin_id=admin_id, admin_role=admin_role))
         session.commit()
 
+    def delete_admin(self, admin_id):
+        admin = self.query.filter_by(admin_id=admin_id).one_or_none()
+        session.delete(admin)
+        session.commit()

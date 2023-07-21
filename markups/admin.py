@@ -29,7 +29,14 @@ admin_markup = InlineKeyboardMarkup(inline_keyboard=[
 
 
 
+def all_admins(admins):
+	markup = InlineKeyboardMarkup()
 
+	for admin in admins:
+		button = InlineKeyboardButton(text=f"{admin.admin_id}", callback_data=f"del_{admin.admin_id}")
+		markup.add(button)
+
+	return markup
    
 
 
