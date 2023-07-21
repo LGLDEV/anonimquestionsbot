@@ -3,7 +3,7 @@ from aiogram import types
 from aiogram.dispatcher import FSMContext
 from utils import Query
 from models import Admin, User
-from markups import admin_markup, founder_markup
+from markups import admin_markup, founder_markup, back_main
 from fsm import Mailing
 
 query = Query(Admin)
@@ -39,9 +39,9 @@ async def mailing(msg: types.Message, state: FSMContext):
 					await msg.copy_to(chat_id=user.user_id)
 				except Exception as e:
 					err += 1
-			await msg.answer(f"<b>📤 Xabar yuborildi\n\n<code>✅ {active}ta</code> - Xabar yetib bordi\n<code>❌ {err}ta</code> - Xabar yetib bormadi</b>")
+			await msg.answer(f"<b>📤 Xabar yuborildi\n\n<code>✅ {active}ta</code> - Xabar yetib bordi\n<code>❌ {err}ta</code> - Xabar yetib bormadi</b>", reply_markup=back_main)
 			await state.finish()
 				
 		except Exception as e:
-			return await msg.answer("<b>🚫 Xatolik yuz berdi</b>")
+			return await msg.answer("<b>🚫 Xatolik yuz berdi</b>", reply_markup=back_main)
 		

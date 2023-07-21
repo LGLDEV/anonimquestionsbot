@@ -15,10 +15,8 @@ async def display_menu(msg: types.Message):
 		return await msg.answer("<b>Admin emas ekansiz uzur</b>")
 	else:
 		if admin.admin_role == "founder":
-			print("founder")
 			return await msg.answer("<b>Assalomu Aleykum</b>", reply_markup=founder_markup)
 		elif admin.admin_role == "admin":
-			print("admin")
 			return await msg.answer("<b>Assalomu Aleykum</b>", reply_markup=admin_markup)
 
 
